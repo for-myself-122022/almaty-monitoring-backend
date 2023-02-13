@@ -34,7 +34,7 @@ class AuthController extends Controller
             'is_male' => 'required|boolean',
             'region' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:users',
             'education' => 'required|string|max:255',
             'nationality' => 'required|string|max:255',
             'height' => 'required|numeric|max:300',
@@ -56,5 +56,12 @@ class AuthController extends Controller
     public function profile()
     {
         return new UserResource(auth()->user());
+    }
+
+    public function isUniqueEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|max:255|unique:users',
+        ]);
     }
 }
