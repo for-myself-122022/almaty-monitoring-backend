@@ -16,8 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    \Illuminate\Support\Facades\Artisan::call('storage:link');
-    \Illuminate\Support\Facades\Log::info('Такс...');
-//    return Redis::georadius('locations', 47.28107717001166,39.765987974363036, 5, 'km', 'ASC');
-//    return view('welcome');
+    return view('welcome');
 });

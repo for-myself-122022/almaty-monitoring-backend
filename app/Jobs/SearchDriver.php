@@ -44,7 +44,7 @@ class SearchDriver implements ShouldQueue
         }
 
         Redis::set("object:$objectId:radius", $this->radius);
-        $driverIds = Redis::georadius('locations', $this->object->latitude, $this->object->longitude, $this->radius, 'km', 'ASC');
+        $driverIds = Redis::georadius('locations', $this->object->latitude, $this->object->longitude, $this->radius * 1000, 'm', 'ASC');
 
         foreach ($driverIds as $driverId) {
             Redis::set("user:$driverId:alarm", $this->object->id, 'EX', 10);
